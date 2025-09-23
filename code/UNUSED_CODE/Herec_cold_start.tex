@@ -1,0 +1,52 @@
+\begin{figure*}[htbp]
+    \centering
+    
+    % First row - RMSE Improvement
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cold_start/cold_start_rmse_dm.pdf}
+        % Replace with your actual image filename
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cold_start/cold_start_rmse_db.pdf}
+        % Replace with your actual image filename
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cold_start/cold_start_rmse_yelp.pdf}
+        % Replace with your actual image filename
+    \end{subfigure}
+    
+    \vspace{0.5em}
+    
+    % Second row - MAE Improvement
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cold_start/cold_start_mae_dm.pdf}
+        % Replace with your actual image filename
+        \caption{Douban Movie}
+        \label{fig:douban_movie}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cold_start/cold_start_mae_db.pdf}
+        % Replace with your actual image filename
+        \caption{Douban Book}
+        \label{fig:douban_book}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cold_start/cold_start_mae_yelp.pdf}
+        % Replace with your actual image filename
+        \caption{Yelp}
+        \label{fig:yelp}
+    \end{subfigure}
+    
+    \caption{Performance comparison of different methods for cold-start prediction on three datasets. $y$-axis denotes the improvement ratio over PMF. From article \parencite{shi2018heterogeneous}}
+    \label{fig:performance_comparison}
+\end{figure*}

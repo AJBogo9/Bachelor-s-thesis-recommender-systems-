@@ -1,0 +1,23 @@
+\begin{figure}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    node distance=4.8cm,
+    box/.style={rectangle, draw, rounded corners=0.3cm, minimum width=2.5cm, minimum height=1.5cm, thick, fill=gray!20, align=center},
+    arrow/.style={->, thick, >=stealth},
+    label/.style={font=\small, above, sloped, align=center}
+]
+% Define nodes
+\node[box] (items) {Items};
+\node[box, right of=items] (items_attr) {Items\\Attribute};
+\node[box, right of=items_attr] (user_profile) {User\\profile};
+\node[box, right of=user_profile] (recommendation) {Recommendation};
+% Draw arrows with labels
+\draw[arrow] (items) -- (items_attr) node[midway, above, align=center] {\small Attribute\\definition};
+\draw[arrow] (items_attr) -- (user_profile) node[midway, above, align=center] {\small Filtering with\\user profile};
+\draw[arrow] (user_profile) -- (recommendation) node[midway, above] {\small Generate};
+\end{tikzpicture}%
+}
+\caption{Content-based filtering algorithm. Inspired by \parencite{thorat2015survey}}
+\label{fig:content_based_filtering_flow_chart}
+\end{figure}

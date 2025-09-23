@@ -1,0 +1,79 @@
+% Knowledge Graph Recommendation Figure
+% To be included in main document using \input{filename}
+% Requires: \usepackage{tikz}, \usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    % Define styles
+    person/.style={circle, fill=orange!70, draw, minimum size=0.8cm},
+    movie/.style={circle, fill=gray!60, draw, minimum size=1cm, 
+                  path picture={\draw[thick] 
+                    (path picture bounding box.center) circle (0.25cm);
+                    \foreach \i in {0,45,90,135,180,225,270,315}
+                      \draw[thick] (path picture bounding box.center) -- ++(\i:0.25cm);}},
+    director/.style={circle, fill=red!70, draw, minimum size=0.8cm},
+    actor/.style={circle, fill=blue!70, draw, minimum size=0.8cm},
+    edge/.style={->, >=Stealth, thick},
+    label/.style={font=\small},
+    recommendation/.style={dashed, blue, thick, rounded corners=5pt}
+]
+
+% People
+\node[person] (bob) at (-4, 1.5) {};
+\node[above=0.1cm of bob, label] {Bob};
+\node[person] (alice) at (-4, -1.5) {};
+\node[below=0.1cm of alice, label] {Alice};
+
+
+
+% Movies
+\node[movie] (interstellar) at (-1, 2.5) {};
+\node[above=0.1cm of interstellar, label] {Interstellar};
+\node[movie] (inception) at (-1, 0) {};
+\node[above=0.1cm of inception, label] {Inception};
+\node[movie] (titanic) at (-1, -2.5) {};
+\node[above=0.1cm of titanic, label] {Titanic};
+
+% Directors and Actors (fixed node types)
+\node[actor] (dicaprio) at (2, 0) {};
+\node[below=0.1cm of dicaprio, label] {Leonardo DiCaprio};
+\node[director] (cameron) at (2, -2.5) {};
+\node[below=0.1cm of cameron, label] {James Cameron};
+
+% Recommended movies (in dashed box)
+\node[movie] (avatar) at (5.5, 1) {};
+\node[above=0.1cm of avatar, label] {Avatar};
+\node[movie] (blood_diamond) at (5.5, -1) {};
+\node[below=0.1cm of blood_diamond, label] {Blood Diamond};
+
+% Dashed box for recommendations
+\node[fit=(avatar)(blood_diamond), recommendation, inner sep=15pt] (rec_box) {};
+\node[below=0.1cm of rec_box, label] {Recommended movies};
+
+% Edges with labels
+\draw[edge, green!70!black] (bob) -- (interstellar) node[midway, above, sloped, label] {watched};
+\draw[edge, green!70!black] (bob) -- (inception) node[midway, above, sloped, label] {watched};
+\draw[edge, green!70!black] (alice) -- (inception) node[midway, above, sloped, label] {watched};
+\draw[edge, green!70!black] (alice) -- (titanic) node[midway, above, sloped, label] {watched};
+
+% Fixed relationship edges
+\draw[edge, green!70!black] (inception) -- (dicaprio) node[midway, above, sloped, label] {acted};
+\draw[edge, green!70!black] (titanic) -- (dicaprio) node[midway, above, sloped, label] {acted};
+\draw[edge, green!70!black] (titanic) -- (cameron) node[midway, above, sloped, label] {directed};
+\draw[edge, green!70!black] (dicaprio) -- (avatar) node[midway, above, sloped, label] {acted};
+\draw[edge, green!70!black] (dicaprio) -- (blood_diamond) node[midway, above, sloped, label] {acted};
+\draw[edge, green!70!black] (cameron) -- (avatar) node[midway, above, sloped, label] {directed};
+
+% Add genre connection (Christopher Nolan for sci-fi movies)
+\node[director] (nolan) at (2, 2.5) {};
+\node[below=0.1cm of nolan, label] {Christopher Nolan};
+\draw[edge, green!70!black] (interstellar) -- (nolan) node[midway, above, sloped, label] {directed};
+\draw[edge, green!70!black] (inception) -- (nolan) node[midway, above, sloped, label] {directed};
+
+% Add friend connection
+\draw[edge, orange] (bob) -- (alice) node[midway, left] {friend};
+
+\end{tikzpicture}
+\caption{An illustration of KG-based recommendation system showing how user preferences and movie relationships enable personalized recommendations. Inspired by \parencite{guo2020survey}. \textbf{Fix this later!}}
+\label{fig:kg_recommendation}
+\end{figure}

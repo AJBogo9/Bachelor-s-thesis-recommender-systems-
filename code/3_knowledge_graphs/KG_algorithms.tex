@@ -1,0 +1,30 @@
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[level distance=1.5cm, sibling distance=2.5cm]
+\tikzset{
+    every node/.style={align=center},
+    level 1/.style={sibling distance=6cm},
+    level 2/.style={sibling distance=6cm}
+}
+
+\node {Knowledge graph modelling}
+    child {
+        node {Path-based methods}
+    }
+    child {
+        node {Embedding based methods}
+        child {
+            node {Translational distance models}
+        }
+        child {
+            node {Semantic matching models}
+        }
+    }
+    child {
+        node {Unified methods}
+    };
+\end{tikzpicture}
+
+\caption{Knowledge graph taxonomy.}
+\label{fig:KG_topic_tree}
+\end{figure}

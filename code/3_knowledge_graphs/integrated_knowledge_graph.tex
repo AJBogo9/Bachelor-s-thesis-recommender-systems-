@@ -1,0 +1,68 @@
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    % Node styles
+    user/.style={circle, fill=blue!30, draw=blue!70, thick, minimum size=1cm},
+    movie/.style={rectangle, fill=red!30, draw=red!70, thick, minimum width=1.2cm, minimum height=0.8cm},
+    director/.style={diamond, fill=green!30, draw=green!70, thick, minimum size=1cm},
+    belongs to/.style={ellipse, fill=orange!30, draw=orange!70, thick, minimum width=1cm, minimum height=0.7cm},
+    % Edge styles
+    rated/.style={->, thick, blue},
+    directed/.style={->, thick, green!70!black},
+    belongs/.style={->, thick, orange!70!black}
+]
+% User nodes
+\node[user] (u1) at (0, 4) {U1};
+\node[user] (u2) at (0, 2) {U2};
+\node[user] (u3) at (0, 0) {U3};
+% Movie nodes
+\node[movie] (m1) at (4, 5) {Inception};
+\node[movie] (m2) at (4, 3) {Interstellar};
+\node[movie] (m3) at (4, 1) {The Matrix};
+\node[movie] (m4) at (4, -1) {Blade Runner};
+% Director nodes
+\node[director] (d1) at (8, 4) {Nolan};
+\node[director] (d2) at (8, 0) {Wachowski};
+% belongs to nodes
+\node[belongs to] (g1) at (8, 6) {Sci-Fi};
+\node[belongs to] (g2) at (8, 2) {Thriller};
+\node[belongs to] (g3) at (8, -2) {Action};
+% User-Movie relationships (ratings)
+\draw[rated] (u1) -- (m1) node[midway, above, sloped, scale=0.7] {rated 5};
+\draw[rated] (u1) -- (m2) node[midway, above, sloped, scale=0.7] {rated 4};
+\draw[rated] (u2) -- (m1) node[midway, above, sloped, scale=0.7] {rated 4};
+\draw[rated] (u2) -- (m3) node[midway, above, sloped, scale=0.7] {rated 5};
+\draw[rated] (u3) -- (m3) node[midway, above, sloped, scale=0.7] {rated 3};
+\draw[rated] (u3) -- (m4) node[midway, above, sloped, scale=0.7] {rated 4};
+% Director-Movie relationships
+\draw[directed] (d1) -- (m1) node[midway, above, sloped, scale=0.7] {directed};
+\draw[directed] (d1) -- (m2) node[midway, below, sloped, scale=0.7] {directed};
+\draw[directed] (d2) -- (m3) node[midway, above, sloped, scale=0.7] {directed};
+% Movie-genre relationships
+\draw[belongs] (m1) -- (g1) node[midway, above, sloped, scale=0.7] {belongs to};
+\draw[belongs] (m1) -- (g2) node[midway, below, sloped, scale=0.7] {belongs to};
+\draw[belongs] (m2) -- (g1) node[midway, above, sloped, scale=0.7] {belongs to};
+\draw[belongs] (m3) -- (g1) node[midway, below, sloped, scale=0.7] {belongs to};
+\draw[belongs] (m3) -- (g3) node[midway, above, sloped, scale=0.7] {belongs to};
+\draw[belongs] (m4) -- (g1) node[midway, below, sloped, scale=0.7] {belongs to};
+\draw[belongs] (m4) -- (g3) node[midway, above, sloped, scale=0.7] {belongs to};
+% Legend
+\node[anchor=west] at (10, 6) {\textbf{Legend:}};
+\node[user, scale=0.8] at (10.5, 5.3) {};
+\node[anchor=west] at (11.2, 5.3) {User};
+\node[movie, scale=0.8] at (10.5, 4.8) {};
+\node[anchor=west] at (11.5, 4.8) {Movie};
+\node[director, scale=0.8] at (10.5, 4.3) {};
+\node[anchor=west] at (11.2, 4.3) {Director};
+\node[belongs to, scale=0.8] at (10.5, 3.8) {};
+\node[anchor=west] at (11.2, 3.8) {belongs to};
+\draw[rated] (10.2, 3.3) -- (10.8, 3.3);
+\node[anchor=west] at (11, 3.3) {Rated};
+\draw[directed] (10.2, 2.9) -- (10.8, 2.9);
+\node[anchor=west] at (11, 2.9) {Directed};
+\draw[belongs] (10.2, 2.5) -- (10.8, 2.5);
+\node[anchor=west] at (11, 2.5) {Belongs to};
+\end{tikzpicture}
+\caption{Knowledge graph for movie recommendation. The graph shows relationships between users (circles), movies (rectangles), directors (diamonds), and genres (ellipses).}
+\label{fig:movie_kg}
+\end{figure}

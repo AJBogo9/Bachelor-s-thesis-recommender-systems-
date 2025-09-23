@@ -1,0 +1,19 @@
+\begin{table}[h]
+\centering
+\label{tab:kge_comparison}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllll}
+\hline
+\textbf{Method} & \textbf{Category} & \textbf{Entity Embedding} & \textbf{Relation Embedding} & \textbf{Loss Function} \\
+\hline
+TransE & TDM & $h, t \in \mathbb{R}^d$ & $r \in \mathbb{R}^d$ & $\|h + r - t\|_{1/2}$ \\
+TransH & TDM & $h, t \in \mathbb{R}^d$ & $r, w_r \in \mathbb{R}^d$ & $\|(h - w_r^T hw_r) + r - (t - w_r^T tw_r)\|_2^2$ \\
+TransR & TDM & $h, t \in \mathbb{R}^d$ & $r \in \mathbb{R}^k, M_r \in \mathbb{R}^{k \times d}$ & $\|M_r h + r - M_r t\|_2^2$ \\
+RESCAL & SMM & $h, t \in \mathbb{R}^d$ & $M_r \in \mathbb{R}^{d \times d}$ & $h^T M_r t$ \\
+DisMult & SMM & $h, t \in \mathbb{R}^d$ & $r \in \mathbb{R}^d$ & $h^T diag(r) t$ \\
+HolE & SMM & $h, t \in \mathbb{R}^d$ & $r \in \mathbb{R}^d$ & $r^T (h \star t)$ \\
+\hline
+\end{tabular}%
+}
+\caption{Summary of KGE techniques. TDM stands for translation distance models and SMM for semantic matching models. Table from article \parencite{ZHANG2024123876}}
+\end{table}

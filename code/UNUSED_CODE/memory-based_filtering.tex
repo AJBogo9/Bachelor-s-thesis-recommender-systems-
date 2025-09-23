@@ -1,0 +1,49 @@
+% User-Based Top-N Recommendation Algorithm
+% Required packages: algorithm, algpseudocode, amsmath
+
+\begin{algorithm}[h]
+\caption{User-Based Top-N Recommendation Algorithm}
+\label{alg:user_based_topn}
+\begin{algorithmic}[1]
+\Require User-Item matrix $R \in \mathbb{R}^{m \times n}$, active user $u_a$, number of neighbors $k$, number of recommendations $N$
+\Ensure Top-N recommendation list $L$
+\State $S \leftarrow \emptyset$ \Comment{Initialize similarity scores}
+\State $U_{purchased} \leftarrow \{i : R_{u_a,i} > 0\}$ \Comment{Items already purchased by active user}
+
+\State \textbf{Step 1: Compute User Similarities}
+\For{each user $u \in \{1, 2, \ldots, m\} \setminus \{u_a\}$}
+    \State $I_{common} \leftarrow \{i : R_{u_a,i} > 0 \text{ and } R_{u,i} > 0\}$ \Comment{Common rated items}
+    \If{$|I_{common}| > 0$}
+        \State \textbf{Pearson Correlation:}
+        \State $\bar{r}_{u_a} \leftarrow \frac{1}{|I_{common}|} \sum_{i \in I_{common}} R_{u_a,i}$
+        \State $\bar{r}_u \leftarrow \frac{1}{|I_{common}|} \sum_{i \in I_{common}} R_{u,i}$
+        \State $sim(u_a, u) \leftarrow \frac{\sum_{i \in I_{common}}(R_{u_a,i} - \bar{r}_{u_a})(R_{u,i} - \bar{r}_u)}{\sqrt{\sum_{i \in I_{common}}(R_{u_a,i} - \bar{r}_{u_a})^2}\sqrt{\sum_{i \in I_{common}}(R_{u,i} - \bar{r}_u)^2}}$
+        \State \textbf{Alternative - Vector Space Model:}
+        \State $sim(u_a, u) \leftarrow \frac{\vec{u_a} \cdot \vec{u}}{||\vec{u_a}|| \cdot ||\vec{u}||}$
+        \State $S \leftarrow S \cup \{(u, sim(u_a, u))\}$
+    \EndIf
+\EndFor
+
+\State \textbf{Step 2: Identify k Nearest Neighbors}
+\State Sort $S$ in descending order by similarity score
+\State $N_k \leftarrow$ top $k$ users from sorted $S$ \Comment{k most similar users}
+
+\State \textbf{Step 3: Aggregate Neighbor Preferences}
+\State $C \leftarrow \emptyset$ \Comment{Initialize candidate item set with frequencies}
+\For{each neighbor $u \in N_k$}
+    \For{each item $i$ where $R_{u,i} > 0$}
+        \If{$i \notin U_{purchased}$}
+            \State $C[i] \leftarrow C[i] + 1$ \Comment{Increment frequency count}
+        \EndIf
+    \EndFor
+\EndFor
+
+\State \textbf{Step 4: Rank and Filter Items}
+\State Sort items in $C$ by frequency in descending order
+\State $L \leftarrow$ top $N$ items from sorted $C$ \Comment{Top-N recommendations}
+
+\State \Return $L$
+\end{algorithmic}
+\end{algorithm}
+
+% End of algorithm

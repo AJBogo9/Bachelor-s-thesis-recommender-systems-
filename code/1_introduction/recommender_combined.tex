@@ -1,0 +1,58 @@
+\begin{figure}[h]
+    \centering
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}[
+            user/.style={circle, draw, fill=blue!20, minimum size=0.8cm},
+            item/.style={rectangle, draw, fill=green!20, minimum size=0.8cm},
+            edge/.style={-}
+        ]
+        % Users (left side)
+        \node[user] (u1) at (0, 3) {$u_1$};
+        \node[user] (u2) at (0, 2) {$u_2$};
+        \node[user] (u3) at (0, 1) {$u_3$};
+        \node[user] (u4) at (0, 0) {$u_4$};
+        % Items (right side)
+        \node[item] (i1) at (3, 3) {$i_1$};
+        \node[item] (i2) at (3, 2) {$i_2$};
+        \node[item] (i3) at (3, 1) {$i_3$};
+        \node[item] (i4) at (3, 0) {$i_4$};
+        % Edges representing user-item interactions
+        \draw[edge] (u1) -- (i1);
+        \draw[edge] (u1) -- (i3);
+        \draw[edge] (u2) -- (i1);
+        \draw[edge] (u2) -- (i2);
+        \draw[edge] (u2) -- (i4);
+        \draw[edge] (u3) -- (i2);
+        \draw[edge] (u3) -- (i3);
+        \draw[edge] (u4) -- (i1);
+        \draw[edge] (u4) -- (i4);
+        % Labels
+        \node at (0, 4) {\textbf{Users}};
+        \node at (3, 4) {\textbf{Items}};
+        \end{tikzpicture}
+        \subcaption{Bipartite graph representation}
+        \label{fig:recommender_graph}
+    \end{minipage}%
+    \hspace{0.02\textwidth}%
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \begin{tabular}{|l|c|c|c|c|}
+            \hline
+            & \textbf{Item 1} & \textbf{Item 2} & \textbf{Item 3} & \textbf{Item 4} \\
+            \hline
+            User 1 & 4 & 1 & 3 & -- \\
+            \hline
+            User 2 & 3 & 2 & -- & 4 \\
+            \hline
+            User 3 & 5 & -- & 2 & 1 \\
+            \hline
+            User 4 & 2 & 3 & 5 & -- \\
+            \hline
+        \end{tabular}
+        \subcaption{Utility matrix}
+        \label{tab:utility_matrix}
+    \end{minipage}
+    \caption{Recommender system data representation: graph and matrix}
+    \label{fig:recommender_combined}
+\end{figure}

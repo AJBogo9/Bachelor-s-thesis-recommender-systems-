@@ -1,0 +1,74 @@
+% knowledge_graph_figure_vertical.tex
+% Include this file in your main document with: \input{knowledge_graph_figure_vertical.tex}
+% Required packages in main document: tikz, amsmath, subcaption, array
+\begin{figure}[h]
+\centering
+
+% Top part - Factual triples
+\begin{subfigure}[t]{\textwidth}
+\centering
+\small
+\begin{tabular}{@{} >{\ttfamily}l @{\hspace{0.5em}} l @{}}
+( & Dr. Marie Curie, \textbf{BornIn}, Poland )\\
+( & Dr. Marie Curie, \textbf{DaughterOf}, Władysław Skłodowski )\\
+( & Dr. Marie Curie, \textbf{StudiedAt}, University of Paris )\\
+( & Dr. Marie Curie, \textbf{ReceivedAward}, Nobel Prize in Physics )\\
+( & Dr. Marie Curie, \textbf{ReceivedAward}, Nobel Prize in Chemistry )\\
+( & Dr. Marie Curie, \textbf{ResearchedIn}, Radioactivity )\\
+( & Nobel Prize in Physics, \textbf{CategoryOf}, Physics )\\
+( & Radioactivity Theory, \textbf{FieldWithin}, Physics )\\
+( & Dr. Marie Curie, \textbf{CollaboratedWith}, Pierre Curie )\\
+( & Pierre Curie, \textbf{AffiliatedWith}, University of Paris )\\
+( & Radioactivity Theory, \textbf{ContributedBy}, Dr. Marie Curie )\\
+( & Dr. Marie Curie, \textbf{DaughterOf}, Irène Joliot-Curie )
+\end{tabular}
+\caption{Facts as triples consisting of a head and tail entity and a relation between them.}
+\label{fig:knowledge_graph_triples_vert}
+\end{subfigure}
+
+\vspace{1em} % Add some vertical space between the subfigures
+
+% Bottom part - Knowledge graph
+\begin{subfigure}[t]{\textwidth}
+\centering
+\begin{tikzpicture}[
+    node/.style={draw, rounded corners, align=center, font=\footnotesize},
+    person/.style={node, fill=cyan!25, ellipse},
+    location/.style={node, fill=lime!30, ellipse},
+    field/.style={node, fill=orange!25, ellipse},
+    recognition/.style={node, fill=violet!20, ellipse},
+    organization/.style={node, fill=lime!30, ellipse},
+    edge/.style={->, font=\tiny, above}
+]
+% Nodes
+\node[person] (marie) at (0, 0) {Dr. Marie\\Curie};
+\node[person] (irene) at (-2.8, 2.2) {Irène Joliot-\\Curie};
+\node[person] (father) at (-2.8, -1.8) {Władysław\\Skłodowski};
+\node[location] (poland) at (-3.2, 0.3) {Poland};
+\node[organization] (sorbonne) at (-1.2, -3.8) {University\\of Paris};
+\node[person] (pierre) at (2.2, -3.8) {Pierre\\Curie};
+\node[field] (radioactivity) at (1.2, 2.2) {Radioactivity\\Theory};
+\node[field] (physics) at (4.2, 0.3) {Physics};
+\node[recognition] (nobel_phys) at (3.8, -1.5) {Nobel Prize\\in Physics};
+\node[recognition] (nobel_chem) at (4.0, -2.9) {Nobel Prize\\in Chemistry};
+% Edges
+\draw[edge] (marie) -- node[left] {\tiny DaughterOf} (irene);
+\draw[edge] (marie) -- node[below] {\tiny DaughterOf} (father);
+\draw[edge] (marie) -- node[above] {\tiny BornIn} (poland);
+\draw[edge] (marie) -- node[below] {\tiny StudiedAt} (sorbonne);
+\draw[edge] (marie) -- node[above left] {\tiny CollaboratedWith} (pierre);
+\draw[edge] (pierre) -- node[below] {\tiny AffiliatedWith} (sorbonne);
+\draw[edge] (radioactivity) -- node[right] {\tiny ContributedBy} (marie);
+\draw[edge] (radioactivity) -- node[above] {\tiny FieldWithin} (physics);
+\draw[edge] (marie) -- node[above] {\tiny ResearchedIn} (radioactivity);
+\draw[edge] (marie) -- node[left] {\tiny ReceivedAward} (nobel_phys);
+\draw[edge] (marie) -- node[left] {\tiny ReceivedAward} (nobel_chem);
+\draw[edge] (nobel_phys) -- node[below] {\tiny CategoryOf} (physics);
+\end{tikzpicture}
+\caption{Corresponding knowledge graph visualization.}
+\label{fig:knowledge_graph_visual_vert}
+\end{subfigure}
+
+\caption{Illustration of knowledge representation using factual triples (top) and their corresponding graph structure (bottom). Node colors represent entity types: \textcolor{cyan}{cyan} represents people, \textcolor{orange}{orange} represents research fields, \textcolor{violet}{violet} represents awards, and \textcolor{lime}{lime} represents locations and institutions.}
+\label{fig:knowledge_graph_vert}
+\end{figure}

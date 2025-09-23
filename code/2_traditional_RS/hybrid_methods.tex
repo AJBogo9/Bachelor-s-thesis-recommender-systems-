@@ -1,0 +1,18 @@
+\begin{table}[h]
+\centering
+\begin{tabular}{p{4cm}p{8cm}}
+\toprule
+\textbf{Method name} & \textbf{Description} \\
+\midrule
+Weighted hybridization & The output of different recommender systems are weighted based on their ability predict ratings. Then the weighted results are combined and shown to the user. \\
+Switching hybridization & Recommender systems are switched based on the recommendation scenario. \\
+Mixed hybridization & Multiple recommender systems calculate recommendations. Then the outputs of these systems are mixed and shown to the user. \\
+Cascade hybridization & A primary system creates a list of recommendations. Then a secondary system tweaks the recommendations typically addressing a problem in the primary system. \\
+Feature combination & A secondary RS calculates feature vectors for users or items and enhances the primary system with these features. \\
+Feature augmentation & User or item feature vectors are used as input for another recommender system. \\
+Meta-level & A system replaces the original dataset with augmented data and another then creates recommendations based on this data. \\
+\bottomrule
+\end{tabular}
+\caption{Popular hybrid methods \parencite{roy2022systematic}.}
+\label{tab:hybrid_methods}
+\end{table}

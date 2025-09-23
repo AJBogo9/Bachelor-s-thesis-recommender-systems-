@@ -1,0 +1,42 @@
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        node distance=3cm,
+        city/.style={draw, rounded corners, minimum width=3cm, minimum height=1.5cm, align=center, fill=lightgray},
+        flight/.style={draw, rounded corners, minimum width=2.5cm, minimum height=1cm, align=center, fill=white},
+        attr/.style={draw, dashed, rounded corners, minimum width=2cm, minimum height=1cm, align=center, fill=white},
+        arrow/.style={->, >=Stealth, thick, color=blue}
+    ]
+
+    % City nodes
+    \node[city] (santiago) at (-0.5, 0) {Santiago : Capital City};
+    \node[city] (arica) at (8, 0) {Arica : Port City};
+
+    % Flight nodes
+    \node[flight] (la380) at (4, 1.5) {LA380 : flight};
+    \node[flight] (la381) at (4, -1.5) {LA381 : flight};
+
+    % Flight attribute nodes
+    \node[attr] (LA380_attr) at (4, 2.5) {company = LATAM};
+    \node[attr] (LA381_attr) at (4, -2.5) {company = LATAM};
+
+    % City attribute nodes
+    \node[attr] (santiago_attr) at (-0.5, -1.5) {lat = -33.45\\long = -70.66};
+    \node[attr] (arica_attr) at (8, -1.5) {lat = -18.48\\long = -70.33};
+
+    % Red arrows from flights to cities
+    \draw[arrow] (la380) -- (santiago);
+    \draw[arrow] (la380) -- (arica);
+    \draw[arrow] (la381) -- (santiago);
+    \draw[arrow] (la381) -- (arica);
+
+    % Dashed lines from cities to their attributes
+    \draw[dashed] (santiago) -- (santiago_attr);
+    \draw[dashed] (arica) -- (arica_attr);
+    \draw[dashed] (la380) -- (LA380_attr);
+    \draw[dashed] (la381) -- (LA381_attr);
+
+    \end{tikzpicture}
+    \caption{Example of a property graph. Flight network showing routes between Santiago and Arica with LATAM flights}
+    \label{fig:flight_network}
+\end{figure}

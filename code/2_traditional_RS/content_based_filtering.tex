@@ -1,0 +1,23 @@
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    node distance=3cm,
+    every node/.style={align=center},
+    user/.style={draw, rectangle, fill=white, minimum width=2cm, minimum height=1cm},
+    movie/.style={draw, rectangle, fill=gray!50, minimum width=2.5cm, minimum height=1cm},
+    arrow/.style={->, thick, >=stealth},
+    redarrow/.style={->, thick, red},
+]
+% Target user at the top
+\node[user] (target) at (3.2,2) {Target user};
+% Movies at the bottom
+\node[movie] (hp1) at (0,0) {Harry Potter I};
+\node[movie, right=4cm of hp1] (hp2) {Harry Potter II};
+% Arrows
+\draw[arrow] (target.south west) -- node[left, pos=0.7] {rated} (hp1.north);
+\draw[<->, thick, >=stealth] (hp1.east) -- node[above] {similar movies} (hp2.west);
+\draw[redarrow] (hp2.north) -- node[right, pos=0.7] {recommended to user} (target.south east);
+\end{tikzpicture}
+\caption{Content-based filtering. The main assumption is that users like similar items that they have liked in the past. Similar items are determined by item attributes.}
+\label{fig:content_based_filtering1}
+\end{figure}

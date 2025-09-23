@@ -1,0 +1,22 @@
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        node distance=2cm,
+        widebox/.style={draw, rounded corners, minimum width=2.5cm, minimum height=0.8cm, align=center, fill=lightgray},
+        arrow/.style={->, >=Stealth, thick},
+        black_arrow/.style={arrow, color=black},
+        black_label/.style={color=black, font=\small}
+    ]
+    % Heterogeneous graph nodes with type labels
+    \node[widebox] (santiago_city) at (-1.5, 0) {Helsinki : City};
+    \node[widebox] (chile_country) at (3, 0) {Finland: Country};
+    \node[widebox] (peru_country) at (7.5, 0) {Russia : Country};
+    
+    % Arrows and labels for Heterogeneous graph
+    \draw[black_arrow] (santiago_city) -- (chile_country) node[midway, above, black_label] {capital};
+    \draw[black_arrow] (chile_country) -- (peru_country) node[midway, above, black_label] {borders};
+    \draw[black_arrow] (peru_country) -- (chile_country) node[midway, below, black_label] {borders};
+    \end{tikzpicture}
+    \caption{Heterogeneous information graph representation. Inspired by \parencite{hogan2021knowledge}}
+    \label{fig:heterogeneous_graph}
+\end{figure}

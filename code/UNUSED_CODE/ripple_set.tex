@@ -1,0 +1,107 @@
+% Ripple set visualization - save as ripple_set.tex
+% Include in main document with: \input{ripple_set}
+% Requires: \usepackage{tikz} and \usetikzlibrary{shapes,positioning,arrows.meta}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    node distance=2cm,
+    seed/.style={circle, draw, fill=brown!70, minimum size=8pt},
+    hop1/.style={circle, draw, fill=orange!60, minimum size=8pt},
+    hop2/.style={circle, draw, fill=orange!40, minimum size=8pt},
+    hopH/.style={circle, draw, fill=orange!20, minimum size=8pt},
+    regular/.style={circle, draw, fill=white, minimum size=8pt},
+    arrow/.style={->, thick, dashed, >=Stealth}
+]
+
+% Seeds section
+\node[above] at (-3,2.5) {\textbf{Seeds}};
+
+% Seed graph
+\node[seed] (s1) at (-3.5,1.5) {};
+\node[seed] (s2) at (-2.5,1.5) {};
+\node[regular] (n1) at (-4,0.5) {};
+\node[regular] (n2) at (-3,0.5) {};
+\node[regular] (n3) at (-2,0.5) {};
+\node[regular] (n4) at (-3.5,-0.5) {};
+\node[regular] (n5) at (-2.5,-0.5) {};
+\node[regular] (n6) at (-4.5,1) {};
+\node[regular] (n7) at (-1.5,1) {};
+
+\draw (s1) -- (s2);
+\draw (s1) -- (n1);
+\draw (s1) -- (n2);
+\draw (s2) -- (n2);
+\draw (s2) -- (n3);
+\draw (n1) -- (n4);
+\draw (n2) -- (n4);
+\draw (n2) -- (n5);
+\draw (n3) -- (n5);
+\draw (n6) -- (n1);
+\draw (n7) -- (n3);
+
+% Arrow to Hop 1
+\draw[arrow] (-1,1) -- (0,1);
+
+% Hop 1 section
+\node[above] at (2,2.5) {\textbf{Hop 1}};
+
+% Hop 1 graph with highlighted region
+\node[seed] (h1s1) at (1.5,1.5) {};
+\node[seed] (h1s2) at (2.5,1.5) {};
+\node[hop1] (h1n1) at (1,0.5) {};
+\node[hop1] (h1n2) at (2,0.5) {};
+\node[hop1] (h1n3) at (3,0.5) {};
+\node[regular] (h1n4) at (1.5,-0.5) {};
+\node[regular] (h1n5) at (2.5,-0.5) {};
+\node[regular] (h1n6) at (0.5,1) {};
+\node[regular] (h1n7) at (3.5,1) {};
+
+\draw (h1s1) -- (h1s2);
+\draw (h1s1) -- (h1n1);
+\draw (h1s1) -- (h1n2);
+\draw (h1s2) -- (h1n2);
+\draw (h1s2) -- (h1n3);
+\draw (h1n1) -- (h1n4);
+\draw (h1n2) -- (h1n4);
+\draw (h1n2) -- (h1n5);
+\draw (h1n3) -- (h1n5);
+\draw (h1n6) -- (h1n1);
+\draw (h1n7) -- (h1n3);
+
+% Arrow to Hop 2
+\draw[arrow] (4,1) -- (5,1);
+
+% Hop 2 section
+\node[above] at (7,2.5) {\textbf{Hop 2}};
+
+% Hop 2 graph
+\node[seed] (h2s1) at (6.5,1.5) {};
+\node[seed] (h2s2) at (7.5,1.5) {};
+\node[hop1] (h2n1) at (6,0.5) {};
+\node[hop1] (h2n2) at (7,0.5) {};
+\node[hop1] (h2n3) at (8,0.5) {};
+\node[hop2] (h2n4) at (6.5,-0.5) {};
+\node[hop2] (h2n5) at (7.5,-0.5) {};
+\node[hop2] (h2n6) at (5.5,1) {};
+\node[hop2] (h2n7) at (8.5,1) {};
+
+\draw (h2s1) -- (h2s2);
+\draw (h2s1) -- (h2n1);
+\draw (h2s1) -- (h2n2);
+\draw (h2s2) -- (h2n2);
+\draw (h2s2) -- (h2n3);
+\draw (h2n1) -- (h2n4);
+\draw (h2n2) -- (h2n4);
+\draw (h2n2) -- (h2n5);
+\draw (h2n3) -- (h2n5);
+\draw (h2n6) -- (h2n1);
+\draw (h2n7) -- (h2n3);
+
+% Dots indicating continuation
+\node at (9.5,1) {\Large $\cdots$};
+
+\end{tikzpicture}
+\caption{Ripple set expansion in a knowledge graph}
+\label{fig:ripple_set}
+\end{figure}

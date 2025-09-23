@@ -1,0 +1,83 @@
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    node distance=1.5cm and 2cm,
+    entity/.style={rectangle, rounded corners, draw=black, thick, minimum width=1.2cm, minimum height=0.8cm, align=center},
+    datetime/.style={rectangle, rounded corners, draw=black, thick, minimum width=2cm, minimum height=0.8cm, align=center},
+    relation/.style={->, >=stealth, thick, magenta},
+    label/.style={font=\small, blue, midway, sloped}
+]
+
+% Events graph nodes
+\node[datetime] (start_time) {2018-03-22 12:00};
+\node[datetime, right=3cm of start_time] (end_time) {2018-03-29 20:00};
+\node[entity, below=0.5cm of start_time, xshift=1.5cm] (eid15) {EID15};
+\node[entity, right=2cm of eid15] (food_festival) {Food Festival};
+\node[entity, right=2cm of food_festival] (eid16) {EID16};
+
+\node[entity, below=1cm of eid15] (nam) {Nam};
+\node[entity, right=1cm of nam] (open_market) {Open Market};
+\node[entity, right=1cm of open_market] (food_truck) {Food Truck};
+
+\node[entity, below=1cm of nam] (santa_lucia) {Santa Lucia};
+\node[entity, right=2cm of santa_lucia] (drinks_festival) {Drinks Festival};
+\node[entity, right=1cm of drinks_festival] (sotomayor) {Sotomayor};
+\node[entity, right=1cm of sotomayor] (piscina_olimpica) {Piscina Olimpica};
+
+\node[entity, below=1cm of santa_lucia] (santiago1) {Santiago};
+\node[entity, below=1cm of sotomayor] (vina_del_mar1) {Viña del Mar};
+\node[entity, below=1cm of piscina_olimpica] (arica1) {Arica};
+
+% Events graph edges
+\draw[relation] (start_time) -- (eid15) node[label, above] {start};
+\draw[relation] (end_time) -- (eid15) node[label, above] {end};
+\draw[relation] (eid15) -- (food_festival) node[label, above] {type};
+\draw[relation] (food_festival) -- (eid16) node[label, above] {type};
+\draw[relation] (eid15) -- (nam) node[label, left] {name};
+\draw[relation] (food_festival) -- (open_market) node[label, above] {type};
+\draw[relation] (eid16) -- (food_truck) node[label, above] {name};
+\draw[relation] (eid15) -- (santa_lucia) node[label, left] {venue};
+\draw[relation] (food_festival) -- (drinks_festival) node[label, left] {type};
+\draw[relation] (eid16) -- (sotomayor) node[label, above] {venue};
+\draw[relation] (eid16) -- (piscina_olimpica) node[label, above] {venue};
+\draw[relation] (santa_lucia) -- (santiago1) node[label, left] {city};
+\draw[relation] (sotomayor) -- (vina_del_mar1) node[label, left] {city};
+\draw[relation] (piscina_olimpica) -- (arica1) node[label, left] {city};
+
+% Events graph border
+\draw[thick, black, rounded corners=5pt] ([xshift=-0.5cm, yshift=0.5cm]start_time.north west) rectangle ([xshift=0.5cm, yshift=-0.5cm]arica1.south east);
+\node[anchor=south west, font=\large\bfseries] at ([xshift=-0.3cm, yshift=0.3cm]start_time.north west) {Events};
+
+% Routes graph nodes (positioned below Events graph)
+\node[entity, below=4cm of santiago1] (santiago2) {Santiago};
+\node[entity, right=3cm of santiago2] (vina_del_mar2) {Viña del Mar};
+\node[entity, right=3cm of vina_del_mar2] (arica2) {Arica};
+
+% Routes graph edges
+\draw[relation] (santiago2) to[bend left=20] node[label, above] {flight} (vina_del_mar2);
+\draw[relation] (santiago2) to[bend right=20] node[label, below] {bus} (vina_del_mar2);
+\draw[relation] (vina_del_mar2) to[bend left=20] node[label, above] {bus} (arica2);
+\draw[relation] (vina_del_mar2) to[bend right=20] node[label, below] {flight} (arica2);
+
+% Routes graph border
+\draw[thick, black, rounded corners=5pt] ([xshift=-0.5cm, yshift=0.5cm]santiago2.north west) rectangle ([xshift=0.5cm, yshift=-0.5cm]arica2.south east);
+\node[anchor=south west, font=\large\bfseries] at ([xshift=-0.3cm, yshift=0.3cm]santiago2.north west) {Routes};
+
+% Default graph (dashed border)
+\node[entity, below=1.5cm of santiago2] (routes_default) {Routes};
+\node[entity, right=2cm of routes_default] (events_default) {Events};
+\node[datetime, right=1cm of routes_default] (date1) {2018-04-03};
+\node[datetime, right=1cm of events_default] (date2) {2018-06-14};
+
+% Default graph edges
+\draw[relation] (routes_default) -- (date1) node[label, above] {updated};
+\draw[relation] (events_default) -- (date2) node[label, above] {updated};
+
+% Default graph border (dashed)
+\draw[thick, black, dashed, rounded corners=5pt] ([xshift=-0.5cm, yshift=0.5cm]routes_default.north west) rectangle ([xshift=0.5cm, yshift=-0.5cm]date2.south east);
+\node[anchor=south west, font=\large\bfseries\itshape] at ([xshift=-0.3cm, yshift=0.3cm]routes_default.north west) {Default};
+
+\end{tikzpicture}
+\caption{Graph dataset with two named graphs and a default graph describing events and routes.}
+\label{fig:graph_dataset}
+\end{figure}

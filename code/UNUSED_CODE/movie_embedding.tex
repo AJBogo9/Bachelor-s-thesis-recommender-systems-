@@ -1,0 +1,51 @@
+% Movie Knowledge Graph Embedding Figure
+% Include this file using: \input{movie_kg_embedding.tex}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    scale=1.5,
+    movie/.style={ellipse, draw=blue!70, fill=blue!20, thick, minimum width=15mm, minimum height=8mm, font=\small},
+    person/.style={circle, draw=red!70, fill=red!20, thick, minimum size=12mm, font=\small},
+    genre/.style={rectangle, draw=green!70, fill=green!20, thick, minimum width=12mm, minimum height=8mm, font=\small},
+    user/.style={circle, draw=orange!70, fill=orange!20, thick, minimum size=12mm, font=\small},
+    relation/.style={-{Stealth[length=3mm]}, thick, color=black},
+    embedding/.style={dashed, gray!40},
+]
+
+% Define coordinates for entities in 2D embedding space
+\coordinate (user) at (-3, 0);
+\coordinate (avatar) at (0, 0);
+\coordinate (interstellar) at (0, -2);
+\coordinate (action) at (2, 1);
+\coordinate (scifi) at (2, 0);
+
+% Draw light embedding space grid
+\draw[embedding, very thin] (-4.5,-3) grid[step=0.5] (3.5,2);
+
+% Main nodes
+\node[user] at (user) {User};
+\node[movie] at (avatar) {Avatar};
+\node[movie] at (interstellar) {Interstellar};
+\node[genre] at (action) {Action};
+\node[genre] at (scifi) {Scifi};
+
+% Relations
+\draw[relation] (user) -- (avatar) node[midway, above, font=\small] {rated};
+\draw[relation] (avatar) -- (action) node[midway, above left, font=\small] {genre};
+\draw[relation] (avatar) -- (scifi) node[midway, right, font=\small] {genre};
+\draw[relation] (interstellar) -- (scifi) node[midway, below right, font=\small] {genre};
+
+% Legend
+\node[draw, fill=white, align=left, font=\small] at (-3.5, -2.5) {
+    \textbf{Legend:} \\
+    \textcolor{orange!70}{$\bullet$} User \\
+    \textcolor{blue!70}{$\circ$} Movie \\
+    \textcolor{green!70}{$\square$} Genre \\
+    $\rightarrow$ Relation
+};
+
+\end{tikzpicture}
+\caption{2D visualization of movie knowledge graph embeddings with user interactions. Users (orange circles) connect to movies (blue ellipses) through rating relationships, while movies connect to genres (green rectangles). The embedding space captures semantic relationships where similar entities cluster together.}
+\label{fig:movie_kg_embedding}
+\end{figure}

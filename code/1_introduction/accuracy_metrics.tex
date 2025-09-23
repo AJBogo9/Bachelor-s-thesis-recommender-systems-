@@ -1,0 +1,19 @@
+\begin{table}[h]
+\centering
+\begin{tabular}{lllccc}
+\toprule
+Name & Symbol & Preference & Scope & Rank & $L$ \\
+\midrule
+MAE & $MAE$ & Small & Rating accuracy & No & No \\
+RMSE & $RMSE$ & Small & Rating accuracy & No & No \\
+Precision & $P(L)$ & Large & Classification accuracy & No & Yes \\
+Recall & $R(L)$ & Large & Classification accuracy & No & Yes \\
+$F_1$-score & $F_1(L)$ & Large & Classification accuracy & No & Yes \\
+AUC & $AUC$ & Large & Classification accuracy & No & No \\
+NDCG & $NDCG(L)$ & Large & Ranking quality & Yes & Yes \\
+Coverage & $COV(L)$ & Large & Coverage and diversity & No & Yes \\
+\bottomrule
+\end{tabular}
+\caption{A summary of common RS performance metrics. The third column indicates the preference of the metric (e.g. small MAE is better). The last two columns tell whether the method depends on the order of the recommendations and the length of the list of recommendations. Table inspired by article \parencite{lu2012recommender}.}
+\label{tab:recommendation_metrics}
+\end{table}

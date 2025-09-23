@@ -1,0 +1,93 @@
+% TikZ styles for the recommender system diagram
+\tikzset{
+    box/.style={rectangle, draw, thick, minimum width=2.5cm, minimum height=1cm, align=center},
+    main/.style={box, fill=gray!20},
+    category/.style={box, fill=gray!10},
+    technique/.style={box, fill=white},
+    method/.style={box, fill=white, minimum width=2cm},
+    algorithm/.style={box, fill=white, minimum width=1.8cm, minimum height=0.8cm, font=\small},
+    arrow/.style={->, thick}
+}
+
+\begin{figure}[htbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[node distance=1.2cm and 0.8cm]
+
+% Top level
+\node[main] (recommender) {Recommender\\System};
+
+% Second level - main categories
+\node[category, below=of recommender, xshift=-7cm] (content) {Content-based filtering\\techniques};
+\node[category, below=of recommender, xshift=-1.5cm] (collaborative) {Collaborative-filtering\\technique};
+\node[category, below=of recommender, xshift=3cm] (hybrid) {Hybrid filtering\\techniques};
+\node[category, below=of recommender, xshift=7cm] (knowledge) {Knowledge\\Based};
+
+% Third level - under collaborative filtering
+\node[technique, below left=of collaborative, xshift=-1.2cm] (memory) {Memory-based\\filtering technique};
+\node[technique, below right=of collaborative, xshift=1.2cm] (model) {Model-based filtering\\technique};
+
+% Fourth level - under memory-based
+\node[method, below left=of memory, xshift=-0.8cm] (user) {User-based};
+\node[method, below right=of memory, xshift=0.8cm] (item) {Item-based};
+
+% Fourth level - under model-based
+\node[method, below left=of model, xshift=-1.8cm] (cluster) {Cluster Model};
+\node[method, below=of model, xshift=-0.6cm] (latent) {Latent Factors\\models};
+\node[method, below=of model, xshift=0.6cm] (linear) {Linear\\regression};
+\node[method, below right=of model, xshift=1.8cm] (bayesian) {Bayesian\\networks};
+
+% Fifth level - under user-based
+\node[algorithm, below=of user] (neighborhood) {Neighborhood\\based};
+
+% Fifth level - under item-based (similarity measures)
+\node[algorithm, below left=of item, xshift=-0.8cm] (pearson) {Pearson\\Similarity};
+\node[algorithm, below right=of item, xshift=0.8cm] (cosine) {Cosine\\Similarity};
+
+% Fifth level - under latent factors
+\node[algorithm, below left=of latent, xshift=-1.2cm] (plsa) {Probabilistic Latent\\Semantic Analysis};
+\node[algorithm, below left=of latent, xshift=-0.4cm] (matrix) {Matrix\\Factorization};
+\node[algorithm, below right=of latent, xshift=0.4cm] (neural) {Neural\\network};
+\node[algorithm, below right=of latent, xshift=1.2cm] (lda) {Latent Dirichlet\\Annotation};
+
+% Sixth level - under matrix factorization
+\node[algorithm, below left=of matrix, xshift=-0.8cm] (als) {Alternative least\\square(ALS)};
+\node[algorithm, below=of matrix] (sgd) {Stochastic gradient\\descend(SGD)};
+\node[algorithm, below right=of matrix, xshift=0.8cm] (svd) {Singular Value\\Decomposition(SVD)};
+
+% Draw connections
+\draw[arrow] (recommender) -- (knowledge);
+\draw[arrow] (recommender) -- (collaborative);
+\draw[arrow] (recommender) -- (content);
+\draw[arrow] (recommender) -- (hybrid);
+
+\draw[arrow] (collaborative) -- (memory);
+\draw[arrow] (collaborative) -- (model);
+
+\draw[arrow] (memory) -- (user);
+\draw[arrow] (memory) -- (item);
+
+\draw[arrow] (model) -- (cluster);
+\draw[arrow] (model) -- (latent);
+\draw[arrow] (model) -- (linear);
+\draw[arrow] (model) -- (bayesian);
+
+\draw[arrow] (memory) -- (neighborhood);
+
+\draw[arrow] (neighborhood) -- (pearson);
+\draw[arrow] (neighborhood) -- (cosine);
+
+\draw[arrow] (latent) -- (plsa);
+\draw[arrow] (latent) -- (matrix);
+\draw[arrow] (latent) -- (neural);
+\draw[arrow] (latent) -- (lda);
+
+\draw[arrow] (matrix) -- (als);
+\draw[arrow] (matrix) -- (sgd);
+\draw[arrow] (matrix) -- (svd);
+
+\end{tikzpicture}%
+}
+\caption{Hierarchical structure of recommender system techniques and algorithms}
+\label{fig:recommender_hierarchy}
+\end{figure}
