@@ -1,1 +1,3 @@
-A pdf of the current version of the thesis can be found from [here](./Bachelor_s_thesis_recommender_systems.pdf).
+# Knowledge Graph Based Recommender Systems
+
+[Link to thesis](./Bachelor_s_thesis_recommender_systems.pdf).
